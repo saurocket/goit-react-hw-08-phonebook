@@ -12,11 +12,11 @@ const useStyles = makeStyles((theme) => ({
     mainFeaturesPos: {
         position: "relative",
         color: theme.palette.common.white,
-        marginBottom: theme.spacing(4),
+        marginBottom: theme.spacing(0),
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
-        minHeight: '70vh'
+        minHeight: '80vh'
     },
     mainFeaturesPosContent: {
         position: "relative",

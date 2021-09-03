@@ -71,7 +71,7 @@ export const Contacts: React.FC<PropsTypes> = ({contacts, filter, onDeleteContac
                             />
                             <ListItemSecondaryAction>
                                 <IconButton
-                                    disabled={loading && removeId === item.id}
+                                    disabled={removeId === item.id}
                                     edge="start"
                                     aria-label="delete"
                                     onClick={() => {

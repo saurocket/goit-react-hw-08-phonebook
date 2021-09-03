@@ -7,10 +7,12 @@ import {Input} from "../../assets/Components/From/Input";
 
 import { schema } from './schema/schema';
 import {useDispatch, useSelector} from "react-redux";
-import {getEditContact, getLoading} from "../../../redux/phoneReducer/phoneSelectors/phoneSelectors";
+import {getEditContact, getError, getLoading} from "../../../redux/phoneReducer/phoneSelectors/phoneSelectors";
 import {actions, ItemPhoneType} from "../../../redux/phoneReducer/phoneReducer";
 import {CancelButton} from "../../assets/Components/From/CanсelButton";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import {alertMessage} from "../../assets/Components/Alert/Alert";
+
 
 type PropsType = {
     name: string,
@@ -39,18 +41,22 @@ const useStyles = makeStyles((theme: Theme) =>
 export const EditContact: React.FC<PropsType> = ({name, phone, onChangeName, onChangePhone, onSubmitForm}) => {
     const editData = useSelector(getEditContact)
     const loading = useSelector(getLoading)
-
+    const error = useSelector(getError)
     const dispatch = useDispatch()
     const classes = useStyles();
 
     useEffect(() => {
+        if(error){
+            alertMessage('error', error)
+            return
+        }
         if (!editData){
             dispatch(actions.clearEditContact())
         }
         onChangeName(editData?.name ?? '')
         onChangePhone(editData?.number ?? '')
 
-    },[editData])
+    },[editData,error])
 
     const onCancelEdit = () => {
         dispatch(actions.clearEditContact())
@@ -90,7 +96,7 @@ export const EditContact: React.FC<PropsType> = ({name, phone, onChangeName, onC
                 error={!!errors.phone}
                 helperText={errors?.phone?.message}
                 value={phone}
-                onChange={(e: any) => onChangePhone(e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChangePhone(e.target.value)}
             />
             <CancelButton
                 disabled={loading}

@@ -3,7 +3,7 @@ import {Title} from "../assets/Components/Title";
 import {Form} from "./From/From";
 import {ContactsPage} from './ContacstPage/ContactsPage';
 import {useDispatch, useSelector} from "react-redux";
-
+import parsePhoneNumberFromString from "libphonenumber-js";
 import {actions, deletePost, getDataContact, ItemPhoneType, postContact, updateContact} from "../../redux/phoneReducer/phoneReducer";
 import {getContacts, getEditContact, getError, getFilter} from "../../redux/phoneReducer/phoneSelectors/phoneSelectors";
 import Container from "@material-ui/core/Container";
@@ -66,8 +66,16 @@ export const MainPage = () => {
         })
     }
     const onChangePhone = (value: string) => {
+        const normalizePhoneNumber = (value:string) => {
+            const phoneNumber = parsePhoneNumberFromString(value)
+            if (!phoneNumber){
+                return value
+            }
+            return phoneNumber.formatInternational()
+        }
+
         setState(preState => {
-            return {...preState, number: value}
+            return {...preState, number: normalizePhoneNumber(value)}
         })
     }
     const onChangeFilter = (value: string) => {
