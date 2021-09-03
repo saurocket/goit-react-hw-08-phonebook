@@ -13,14 +13,14 @@ const initialState = {
     error:null as null | string,
     responseAfterRegistration: null as null | ResponseAfterRegistration,
     signIn:{
-        email: 'tes2@ya.ru',
-        password: '1234567'
+        email: '',
+        password: ''
     } as signIn,
     signUp:{
-        name: 'testone',
-        email: 'tes2@ya.ru',
-        password: '1234567',
-        confirmPassword: '1234567',
+        name: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
     } as signUp,
     isFetch: false,
 }
