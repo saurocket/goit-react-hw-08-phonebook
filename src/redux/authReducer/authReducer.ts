@@ -92,7 +92,6 @@ export const loginUser = (data:LoginDataType):ThunkType => {
                     dispatch(actions.authUser({auth:true, ...response}))
                 }
             }catch (e) {
-                console.log(e.response.statusText)
                 dispatch(actions.throwError(e.response?.statusText ?? e.message ?? 'Something went wrong'))
             }
             finally {

@@ -12,7 +12,7 @@ export const schema = yup.object().shape({
         .required("Email is a required field"),
     password: yup
         .string()
-        .min(6, 'Password is too short. It has to be more then 6 simbols')
+        .min(7, 'Password is too short. It has to be more then 6 simbols')
         .required("Password  is a required field"),
     confirmPassword: yup
         .string()

@@ -44,7 +44,6 @@ export const App = ()  => {
                 history.push('/')
             }
         }
-
         createAuthObject()
     },[auth, error])
 
